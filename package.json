@@ -1,0 +1,52 @@
+{
+  "name": "generator-teduxer",
+  "version": "0.1.0",
+  "description": "yo generator for apps with reactJS and redux",
+  "homepage": "",
+  "author": "Miguel Viñan",
+  "files": [
+    "app",
+    "router"
+  ],
+  "main": "index.js",
+  "keywords": [
+    "generator for basic redux react apps",
+    "yeoman-generator"
+  ],
+  "scripts": {
+    "test": "gulp",
+    "prepublish": "gulp prepublish"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "yeoman-generator": "^0.22.5",
+    "yeoman-assert": "^2.0.0",
+    "eslint": "^2.1.0",
+    "eslint-config-xo-space": "^0.10.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.0.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-nsp": "^2.1.0"
+  },
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "cheerio": "^0.20.0",
+    "glob": "^7.0.3",
+    "lodash": "^4.6.1",
+    "mkdirp": "^0.5.1",
+    "path": "^0.12.7",
+    "yeoman-generator": "^0.21.1",
+    "yosay": "^1.0.2"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true
+    }
+  },
+  "repository": "git@github.com:/generator-structure-wp.git"
+}

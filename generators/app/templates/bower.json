@@ -1,0 +1,21 @@
+{
+  "name": "<%=name%>",
+  "description": "Browserify + Babelify + Watchify + React + Redux = <%= name %> cool ReactJs App",
+  "main": "gulpfile.js",
+  "authors": [
+    "<%= name%>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "<%= cssFramework %>": "<%= cssFrameworkVersion %>"
+  }
+}
