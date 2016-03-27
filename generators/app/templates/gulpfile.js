@@ -26,19 +26,19 @@ var gulpsync = require('gulp-sync')(gulp);
 
 
 var src = {
-    sass: './src/importer.sass',
-    sassAll: 'app/**/*.sass',
-    css:  'public/styles/',
-    html: 'public/*.html'
+  sass: './app/importer.sass',
+  sassAll: 'app/**/*.sass',
+  css:  'public/styles/',
+  html: 'public/*.html'
 };
 
 // Input file.
 watchify.args.debug = true;
-var bundler = watchify(browserify('./src/app.jsx', watchify.args));
+var bundler = watchify(browserify('./app/app.js', watchify.args));
 
 // Babel transform
 bundler.transform(babelify.configure({
-    sourceMapRelative: './src'
+    sourceMapRelative: './app'
 }));
 
 // On updates recompile
@@ -54,23 +54,23 @@ function bundle() {
     '\n'+gutil.colors.yellow('------------------------------------------------')
   );
 
-    return bundler.bundle()
-        .on('error', function (err) {
-            gutil.log(err.message);
-            browserSync.notify("Browserify Error!");
-            this.emit("end");
-        })
-        .pipe(exorcist('public/js/bundle.js.map'))
-        .pipe(source('bundle.js'))
-        .pipe(gulp.dest('./public/js'))
-        .pipe(browserSync.stream({once: true}));
+  return bundler.bundle()
+    .on('error', function (err) {
+      gutil.log(err.message);
+      browserSync.notify("Browserify Error!");
+      this.emit("end");
+    })
+    .pipe(exorcist('public/js/bundle.js.map'))
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('./public/js'))
+    .pipe(browserSync.stream({once: true}));
 }
 
 /**
  * Gulp task alias
  */
 gulp.task('bundle', function () {
-    return bundle();
+  return bundle();
 });
 
 /**
@@ -139,7 +139,7 @@ gulp.task('inject:sass', function () {
 
 
   return target.pipe(inject(sources, {relative: true, empty: true}))
-    .pipe(gulp.dest('src'))
+    .pipe(gulp.dest('app'))
     .pipe(reload({stream: true}))
 });
 
