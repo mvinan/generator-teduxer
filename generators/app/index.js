@@ -64,12 +64,6 @@ module.exports = yeoman.generators.Base.extend({
     mkdirp('public/styles/',function(err) {
       err ? console.error(err) : console.log(chalk.green('   create ') + 'public/styles/');
     });
-    mkdirp('src/external/js/',function(err) {
-      err ? console.error(err) : console.log(chalk.green('   create ') + 'src/external/js/');
-    });
-    mkdirp('src/external/styles/',function(err) {
-      err ? console.error(err) : console.log(chalk.green('   create ') + 'src/external/styles/');
-    });
 
   },
 
