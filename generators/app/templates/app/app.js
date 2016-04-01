@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../app/app'
 
 export default class App extends React.Component{
   render(){
