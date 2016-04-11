@@ -47,11 +47,7 @@ bundler.on('update', bundle);
 function bundle() {
 
   gutil.log(
-    '\n'+gutil.colors.yellow('------------------------------------------------') +
-    '\n'+
-    '\n'+gutil.colors.yellow('            Compilando JSX…' ) +
-    '\n'+
-    '\n'+gutil.colors.yellow('------------------------------------------------')
+    '\n'+gutil.colors.yellow('Compilando JSX…' )
   );
 
   return bundler.bundle()
@@ -99,11 +95,7 @@ gulp.task('styles', function() {
   });
 
   gutil.log(
-    '\n'+gutil.colors.yellow('------------------------------------------------') +
-    '\n'+
-    '\n'+gutil.colors.yellow('            Compilando Styles…' ) +
-    '\n'+
-    '\n'+gutil.colors.yellow('------------------------------------------------')
+    '\n'+gutil.colors.yellow('Compilando Styles…' )
   );
 
   return gulp.src(src.sass)
@@ -130,11 +122,7 @@ gulp.task('inject:sass', function () {
   var sources = gulp.src(['app/**/*.sass','app/**/*.scss'], {read: false});
 
   gutil.log(
-    '\n'+gutil.colors.yellow('------------------------------------------------') +
-    '\n'+
-    '\n'+gutil.colors.yellow('            Inject Sass files…' ) +
-    '\n'+
-    '\n'+gutil.colors.yellow('------------------------------------------------')
+    '\n'+gutil.colors.yellow('Inject Sass files…' )
   );
 
 
@@ -153,11 +141,7 @@ gulp.task('inject:HTML', function () {
   var sources = gulp.src(['public/js/*.js','public/styles/*.css'], {read: false});
 
   gutil.log(
-    '\n'+gutil.colors.yellow('------------------------------------------------') +
-    '\n'+
-    '\n'+gutil.colors.yellow('   Injecting necessaries scripts in HTML…' ) +
-    '\n'+
-    '\n'+gutil.colors.yellow('------------------------------------------------')
+    '\n'+gutil.colors.yellow('Injecting necessaries scripts in HTML…' )
   );
 
 
