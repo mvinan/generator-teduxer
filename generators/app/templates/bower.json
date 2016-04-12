@@ -1,6 +1,6 @@
 {
   "name": "<%=name%>",
-  "description": "Browserify + Babelify + Watchify + React + Redux = <%= name %> cool ReactJs App",
+  "description": "Browserify + Browsersync + React + Redux = <%= name %> cool React App",
   "main": "gulpfile.js",
   "authors": [
     "<%= name%>"

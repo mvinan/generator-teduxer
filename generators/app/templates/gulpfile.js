@@ -6,7 +6,8 @@ var babelify     = require('babelify');
 var watchify     = require('watchify');
 var exorcist     = require('exorcist');
 var browserify   = require('browserify');
-var browserSync  = require('browser-sync').create();
+var browserSync  = require('browser-sync');
+var nodemon = require('gulp-nodemon');
 
 //Sass modules
 var sass         = require('gulp-sass');
@@ -29,7 +30,7 @@ var src = {
   sass: './app/importer.sass',
   sassAll: 'app/**/*.sass',
   css:  'public/styles/',
-  html: 'public/*.html'
+  views: './views/*.jsx'
 };
 
 // Input file.
@@ -69,18 +70,41 @@ gulp.task('bundle', function () {
   return bundle();
 });
 
+
 /**
  * First bundle, then serve from the ./public directory
  */
-gulp.task('default', gulpsync.sync(['bundle','inject:sass', 'styles','inject:HTML']), function () {
-    browserSync.init({
-        server: "./public"
-    });
+gulp.task('default', gulpsync.sync(['bundle','inject:sass', 'styles','inject:scripts','browser-sync']), function () {
 
     //watch sass files
     gulp.watch([src.sassAll, src.sass], ['inject:sass', 'styles']);
-    gulp.watch(src.html).on('change', reload);
+    gulp.watch(src.views).on('change', reload);
 });
+
+
+
+/*
+ *
+ * Browsersync task
+ *
+ */
+
+gulp.task('browser-sync',['nodemon'],function(){
+ browserSync.init(null,{
+    port: 7000,
+    proxy: "http://localhost:4000"
+ })
+})
+
+gulp.task('set-dev-node-env', function() {
+    return process.env.NODE_ENV = 'development';
+});
+
+gulp.task('nodemon',['set-dev-node-env'], function (cb) {
+     return nodemon({
+       script: 'server.js'
+     }).once('start', cb);
+ });
 
 
 /*
@@ -135,18 +159,18 @@ gulp.task('inject:sass', function () {
  * Inject HTML Scripts
  */
 
-gulp.task('inject:HTML', function () {
-  var target = gulp.src('public/index.html');
+gulp.task('inject:scripts', function () {
+  var target = gulp.src('./views/home.jsx');
   // It's not necessary to read the files (will speed up things), we're only after their paths:
-  var sources = gulp.src(['public/js/*.js','public/styles/*.css'], {read: false});
+  var sources = gulp.src(['!public/js/exclude/*.js','./public/js/*.js','./public/styles/*.css'], {read: false});
 
   gutil.log(
-    '\n'+gutil.colors.yellow('Injecting necessaries scripts in HTML…' )
+    '\n'+gutil.colors.yellow('Injecting necessaries scripts…' )
   );
 
 
-  return target.pipe(inject(sources, {relative: true, empty: true}))
-    .pipe(gulp.dest('public'))
+  return target.pipe(inject(sources, {empty: true, ignorePath: 'public'}))
+    .pipe(gulp.dest('./views'))
     .pipe(reload({stream: true}))
 });
 
